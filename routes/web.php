@@ -12,6 +12,7 @@ Auth::routes(['register' => false]);
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', function () { return redirect()->route('login'); })->name('home');
+    Route::get('dashboard', function () { return redirect()->route('admin.users.index'); })->name('home');
 
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -25,12 +26,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
-     // Hospitals
-    Route::delete('hospitals/destroy', 'HospitalsController@massDestroy')->name('hospitals.massDestroy');
-    Route::resource('hospitals', 'HospitalsController');
-
-    Route::resource('lookups','LookupsController');
-
     Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
         // Change password
         if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
@@ -38,4 +33,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
             Route::post('password', 'ChangePasswordController@update')->name('password.update');
         }
     });
+    //Select2 Find
+    Route::post('select2_find','CommonController@select2Find')->name('select2_find');
 });

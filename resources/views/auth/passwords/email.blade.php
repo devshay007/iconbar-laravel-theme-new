@@ -3,11 +3,11 @@
 <div class="panel">
   <div class="panel-body">
     <div class="brand hms_brand">
-      <img class="brand-img" src="{{asset('assets/images/icon-2.png')}}" alt="...">
-      <span>OCHS</span>
-      <h2 class="brand-text font-size-18">
+      <!-- <img class="brand-img" src="{{asset('assets/images/icon-2.png')}}" alt="..."> -->
+      <span>S S Tredig</span>
+      <!--<h2 class="brand-text font-size-18">
           {{ trans('panel.site_tag') }}
-      </h2>
+      </h2>-->
     </div>
     <br>
     <h3>Forgot Your Password ?</h3>

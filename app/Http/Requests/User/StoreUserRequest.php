@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'min:6'],
-            'mobile_no' => ['required', 'numeric', 'min:11'],
+            'mobile_no' => ['required'],
             'status' => ['required', 'in:0,1'],
             'roles'    => [ 'required','array'],
         ];

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'site_title' => 'OCHS',
-    'site_tag' => 'Healthcare Software',
-    'site_full_title' => 'OCHS Healthcare Software',
+    'site_title' => 'S S Tredig',
+    'site_tag' => '',
+    'site_full_title' => 'S S Tredig',
 ];

@@ -12,9 +12,7 @@ class UpdateUserRequest extends FormRequest
     public function authorize()
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         return true;
-
     }
 
     public function rules()
@@ -25,7 +23,7 @@ class UpdateUserRequest extends FormRequest
             'email'   => [
                 'required', 'string', 'email', 'max:255', 'unique:users,email,' . request()->route('user')->id],
             'password' => ['confirmed'],
-            'mobile_no' => ['required', 'numeric', 'min:11'],
+            'mobile_no' => ['required'],
             'status' => ['required', 'in:0,1'],
             'roles'   => ['required','array'],
         ];

@@ -4,11 +4,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
-use \App\Traits\UserActionsBy;
 
 class Permission extends Model
 {
-    use SoftDeletes,UserActionsBy;
+    use SoftDeletes;
     
 
     public $table = 'permissions';

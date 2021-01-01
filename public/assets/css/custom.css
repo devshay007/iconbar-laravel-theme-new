@@ -1,21 +1,5 @@
-.site-menubar{
-  width: 155px !important;
-}
-.site-menu>.site-menu-item>.site-menu-sub{
-left: 155px !important;
-}
-.page, .site-footer{
-margin-left:155px !important;
-}
 .clearfix{
   clear: both;
-}
-.site-menubar-hide .page, .site-menubar-hide .site-footer{
-margin-left:0px !important;	
-}
-.site-menubar-hide .site-menubar{
-	webkit-transform: translate3d(-155px,0,0);
-    transform: translate3d(-155px,0,0);
 }
 
 /******Dattable*********/
@@ -77,7 +61,45 @@ table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
 .has-danger .invalid-feedback{
   display: block;
 }
+/********************Loader**********************/
+#hms_loader .lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  top: 45%;
+  left: 45%;
+}
+#hms_loader .lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 #hms_loader{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: no-repeat #00000075;
+}
+/*#hms_loader{
  z-index:999999;
  display:none;
  position:fixed;
@@ -86,4 +108,195 @@ table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
  width:100%;
  height:100%;
  background:url(../../images/loader.gif) 50% 50% no-repeat #00000075;
+}*/
+/********************End Loader**********************/
+div.dataTables_wrapper div.dataTables_info{
+  opacity:0;
 }
+
+.hms_card_primary{
+    border-color: #3f51b5 !important;
+}
+.hms_card_primary .card-header{
+    background-color: #3f51b5 !important;
+}
+
+/**************Media Css****************/
+@media only screen and (max-width: 767px) {
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dt-buttons{
+    display: initial;
+    margin-bottom:10px;
+  }
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dt-buttons .btn{
+    margin-bottom:10px;
+  }
+  .dataTables_wrapper .dataTables_filter {
+    float: none;
+  }
+}
+@media screen and (max-width: 1102px) {
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dt-buttons{
+    display: initial;
+  }
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dt-buttons .btn{
+    margin-bottom:10px;
+  }
+  .dataTables_wrapper .dataTables_filter {
+    float: none;
+  }
+  table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th.dtr-control:before{
+    left: 15px !important;
+  }
+  table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after{
+    content:"" !important;
+  }
+  table.dataTable>tbody>tr.child ul.dtr-details{
+    width: 100%;
+  }
+}
+/**************End Media Css****************/
+
+/* Alignment center for all datatable th td */
+table.dataTable {
+  text-align: center;
+}
+.modal-open .select2-container {
+    z-index: 1600 !important;
+}
+
+.note-popover .popover-content .dropdown-menu, .panel-heading.note-toolbar .dropdown-menu{
+  z-index: 9999 !important;
+}
+/**************Override Bootstrap Element*********************/
+.border-primary{
+border-color: #3f51b5!important;
+}
+/**************End Override Bootstrap Element*********************/
+
+.modal-header .close {
+    margin-top: -15px;
+}
+
+.mt-28 {
+  margin-top: 28px;
+}
+
+/**********************Theme Color Settings**************************/
+.themenav_skin .radio-custom.radio-dark label::before {
+    border-color: #424242;
+}
+.themenav_skin .radio-custom.radio-dark label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-dark input[type="radio"]:checked + label::before {
+    border-color: #424242;
+}
+.themenav_skin .radio-custom.radio-primary label::before {
+    border-color: #283593;
+}
+.themenav_skin .radio-custom.radio-primary label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-primary input[type="radio"]:checked + label::before {
+    border-color: #283593;
+}
+.themenav_skin .radio-custom.radio-blue label::before {
+    border-color: #1565c0;
+}
+.themenav_skin .radio-custom.radio-blue label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-blue input[type="radio"]:checked + label::before {
+    border-color: #1565c0;
+}
+.themenav_skin .radio-custom.radio-brown label::before {
+    border-color: #4e342e;
+}
+.themenav_skin .radio-custom.radio-brown label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-brown input[type="radio"]:checked + label::before {
+    border-color: #4e342e;
+}
+.themenav_skin .radio-custom.radio-cyan label::before {
+    border-color: #00838f;
+}
+.themenav_skin .radio-custom.radio-cyan label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-cyan input[type="radio"]:checked + label::before {
+    border-color: #00838f;
+}
+.themenav_skin .radio-custom.radio-green label::before {
+    border-color: #2e7d32;
+}
+.themenav_skin .radio-custom.radio-green label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-green input[type="radio"]:checked + label::before {
+    border-color: #2e7d32;
+}
+.themenav_skin .radio-custom.radio-grey label::before {
+    border-color: #424242;
+}
+.themenav_skin .radio-custom.radio-grey label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-grey input[type="radio"]:checked + label::before {
+    border-color: #424242;
+}
+.themenav_skin .radio-custom.radio-orange label::before {
+    border-color: #ef6c00;
+}
+.themenav_skin .radio-custom.radio-orange label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-orange input[type="radio"]:checked + label::before {
+    border-color: #ef6c00;
+}
+.themenav_skin .radio-custom.radio-pink label::before {
+    border-color: #ad1457;
+}
+.themenav_skin .radio-custom.radio-pink label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-pink input[type="radio"]:checked + label::before {
+    border-color: #ad1457;
+}
+.themenav_skin .radio-custom.radio-purple label::before {
+    border-color: #6a1b9a;
+}
+.themenav_skin .radio-custom.radio-purple label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-purple input[type="radio"]:checked + label::before {
+    border-color: #6a1b9a;
+}
+.themenav_skin .radio-custom.radio-red label::before {
+    border-color: #c62828;
+}
+.themenav_skin .radio-custom.radio-red label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-red input[type="radio"]:checked + label::before {
+    border-color: #c62828;
+}
+.themenav_skin .radio-custom.radio-teal label::before {
+    border-color: #00695c;
+}
+.themenav_skin .radio-custom.radio-teal label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-teal input[type="radio"]:checked + label::before {
+    border-color: #00695c;
+}
+.themenav_skin .radio-custom.radio-yellow label::before {
+    border-color: #f9a825;
+}
+.themenav_skin .radio-custom.radio-yellow label::after {
+    border-color: #fff;
+}
+.themenav_skin .radio-custom.radio-yellow input[type="radio"]:checked + label::before {
+    border-color: #f9a825;
+}
+/**********************End Theme Color Settings**************************/

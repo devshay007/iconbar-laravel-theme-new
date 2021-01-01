@@ -67,8 +67,10 @@ class UsersController extends Controller
     }
 
     public function store(StoreUserRequest $request)
-    {
-        $user = User::create($request->all());
+    {   
+        $insert_data = $request->all();
+        $insert_data['mobile_no'] = preg_replace('/[^0-9]/', '',$request->input('mobile_no'));
+        $user = User::create($insert_data);
         $user->roles()->sync($request->input('roles', []));
 
         return redirect()->route('admin.users.index')->with('message', 'User added successfully.');

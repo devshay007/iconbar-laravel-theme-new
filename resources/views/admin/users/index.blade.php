@@ -11,19 +11,18 @@
 @section('content')
 <div class="page-header">
   <h1 class="page-title">{{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}</h1>
-  <!-- <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-    <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li>
-    <li class="breadcrumb-item active">DataTables</li>
-  </ol> -->
+  {{ Breadcrumbs::render('admin.users.index') }}
   <div class="page-header-actions">
     @can('user_create')
         <a class="btn btn-sm btn-primary btn-round" href="{{ route("admin.users.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }} <i class="icon md-plus" aria-hidden="true"></i> 
+            Add User
         </a>
     @endcan
   </div>
 </div>
+<div class="per_delete"></div>
+<div class="per_export"></div>
+<div class="per_print"></div>
 <div class="page-content">
     <div class="panel">
         <div class="panel-body">

@@ -2,6 +2,7 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title">{{ trans('global.show') }} {{ trans('cruds.user.title') }}</h1>
+    {{ Breadcrumbs::render('admin.users.show',$user,$user->name) }}
 </div>
 <div class="page-content">
     <div class="panel">

@@ -11,7 +11,7 @@
     <title>{{ trans('panel.site_full_title') }}</title>
     
     <link rel="apple-touch-icon" href="{{ asset('assets/images/apple-touch-icon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ session('login_data.hospital.favicon_url') }}">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('global/css/bootstrap.min.css') }}">
@@ -39,10 +39,19 @@
       Breakpoints();
     </script>
   </head>
-  <body class="animsition">
-    <nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega"
-      role="navigation">
-    
+  <body class="animsition {{session('login_data.hospital.theme_skin')}}">
+    <?php
+    $theme_classes='navbar-inverse';
+    if(session('login_data.hospital.theme')!=''){
+      if(session('login_data.hospital.theme.skin_navbar_type')==false){
+        $theme_classes='';
+      }
+      if(session('login_data.hospital.theme.skinnavbar')!='primary'){
+        $theme_classes.=' bg-'.session('login_data.hospital.theme.skinnavbar').'-600';
+      }
+    }
+    ?>
+    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega {{$theme_classes}}" role="navigation">
       <div class="navbar-header">
         <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
           data-toggle="menubar">
@@ -53,19 +62,17 @@
           data-toggle="collapse">
           <i class="icon md-more" aria-hidden="true"></i>
         </button>
+        <a href="{{ url('admin/dashboard') }}">
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-          <img class="navbar-brand-logo" src="{{ asset('assets/images/logo.png')}}" title="Remark">
+          <!-- <img class="navbar-brand-logo" src="{{ asset('assets/images/logo.png')}}" title="OCHS"> -->
           <span class="navbar-brand-text hidden-xs-down">
-            <img class="navbar-brand-logo" src="{{ asset('assets/images/logo-ochs.png')}}" title="Remark">
+            <!-- <img class="navbar-brand-logo" src="{{ session('login_data.hospital.logo_url') }}" title="OCHS"> -->
+            S S Tredig
           </span>
           <br>
-          <span class="navbar-brand-tag hidden-xs-down" style="font-size: 12px;">{{ trans('panel.site_tag') }}</span>
+          <!-- <span class="navbar-brand-tag hidden-xs-down" style="font-size: 12px;"></span> -->
         </div>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
-          data-toggle="collapse">
-          <span class="sr-only">Toggle Search</span>
-          <i class="icon md-search" aria-hidden="true"></i>
-        </button>
+        </a>
       </div>
     
       <div class="navbar-container container-fluid">
@@ -90,12 +97,15 @@
               <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
                 data-animation="scale-up" role="button">
                 <span class="avatar avatar-online">
-                  <img src="{{ asset('assets/images/default_user.png')}}" alt="...">
+                  <img src="{{ asset('assets/images/default_user.png') }}" alt="...">
                   <i></i>
                 </span>
+                <span>Welcome, Admin</span>
               </a>
               <div class="dropdown-menu" role="menu">
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profile</a>
+                <!--<div class="dropdown-divider"></div> 
+                 <a href="javascript:void(0);" class="dropdown-item waves-effect waves-light waves-round"><span>{{ session('login_data.hospital.name')}}</span></a> -->
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item waves-effect waves-light waves-round" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="icon md-power" aria-hidden="true"></i> {{ trans('global.logout') }}</a>
               </div>
@@ -104,21 +114,6 @@
           <!-- End Navbar Toolbar Right -->
         </div>
         <!-- End Navbar Collapse -->
-    
-        <!-- Site Navbar Seach -->
-        <div class="collapse navbar-search-overlap" id="site-navbar-search">
-          <form role="search">
-            <div class="form-group">
-              <div class="input-search">
-                <i class="input-search-icon md-search" aria-hidden="true"></i>
-                <input type="text" class="form-control" name="site-search" placeholder="Search...">
-                <button type="button" class="input-search-close icon md-close" data-target="#site-navbar-search"
-                  data-toggle="collapse" aria-label="Close"></button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <!-- End Site Navbar Seach -->
       </div>
     </nav>    
     
@@ -134,7 +129,9 @@
       </form>
     </div>
     <!-- End Page -->
-    <div id="hms_loader"></div>
+    <div id="hms_loader">
+      <div class="lds-dual-ring"></div>
+    </div>
     <!-- Footer -->
     <footer class="site-footer">
       <div class="site-footer-legal">© {{ date('Y') }} All Rights Reserved</div>
@@ -144,7 +141,7 @@
     </footer>
     <!-- Core  -->
     <script src="{{ asset('global/vendor/babel-external-helpers/babel-external-helpers.js')}}"></script>
-    <script src="{{ asset('global/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('global/vendor/jquery/jquery.js')}}"></script>
     <script src="{{ asset('global/vendor/popper-js/umd/popper.min.js')}}"></script>
     <script src="{{ asset('global/vendor/bootstrap/bootstrap.min.js')}}"></script>
     <script src="{{ asset('global/vendor/animsition/animsition.min.js')}}"></script>
@@ -171,6 +168,19 @@
     
     <!-- Config -->
     <script>Config.set('assets', '{{ asset("assets")}}');</script>
+
+    <script type="text/javascript">
+      var base_url = "{{ url('/') }}";
+      var logged_user_email = "{{ session('login_data.user.email') }}";
+      var developer_admin_email = "{{ config('config.developer_admin.email') }}";
+
+      if (logged_user_email == developer_admin_email) {
+        var is_admin = 1;
+      }
+      else {
+          var is_admin = 0;
+      }
+    </script>
     
     <!-- Page -->
     <script src="{{ asset('assets/js/Site.js')}}"></script>
@@ -191,7 +201,7 @@
       @endif
 
       if($('.site-menu-sub .site-menu-item').hasClass("active")){
-        $activeMenu=$('.site-menu-sub .site-menu-item').parent('.site-menu-sub').parent('.site-menu-item .has-sub');
+        $activeMenu=$('.site-menu-sub').find('.site-menu-item.active').parent('.site-menu-sub').parent('.site-menu-item.has-sub');
         $activeMenu.addClass('active');
         $activeMenu.parent('.site-menu-sub').parent('.site-menu-item.has-sub').addClass('active');
       }
